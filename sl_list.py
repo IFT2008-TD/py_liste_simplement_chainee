@@ -27,27 +27,19 @@ class ListeSC(Sequence):
         Args :
             elements (iterable) : contient les éléments à insérer dans la liste
         """    
-        if elements is None:
-            elements = []
-        self.head = None
-        self.cardinal = 0
-        for item in reversed(elements):
-            self.inserer_premier(item)
-        assert self._invariant()
+        pass
 
     def __len__(self):
         """Retourne le nombre d'éléments dans la liste."""
-        return self.cardinal
+        pass
 
     def _compter_elements(self, item):
         """Compter récursivement les éléments de la liste. Utilié par l'invariant."""
-        if item is None:
-            return 0
-        return 1 + self._compter_elements(item.suivant)
+        pass
 
     def _invariant(self):
         """La liste est valide si, et seulement si, en comptant chaque élément de head à None on obtient le cardinal."""
-        return self.cardinal == self._compter_elements(self.head)
+        pass
 
     def _trouver_dernier(self, courant):
         """Trouve récursivement la référence au dernier élément de la liste (celui dont le suivant est None)
@@ -56,114 +48,51 @@ class ListeSC(Sequence):
         Returns :
             Element : Référence au dernier élément de la liste. NB : La liste ne peut être vide!!!
             """
-        if courant.suivant is None:
-            return courant
-        return self._trouver_dernier(courant.suivant)
+        pass
 
     def _trouver_avant_dernier(self, courant):
         """Comme la méthode précédente mais avec l'avant-dernier élément. La liste doit avoir au-moins 2 éléments !"""
-        if courant.suivant.suivant is None:
-            return courant
-        return self._trouver_avant_dernier(courant.suivant)
+        pass
 
     def inserer_premier(self, x):
         """Ajoute la valeur x en première position de la liste."""
-        item = Element(x)
-        item.suivant = self.head
-        self.head = item
-        self.cardinal += 1
-        assert self._invariant()
+        pass
 
     def inserer_dernier(self, x):
         """Ajoute la valeur x en dernière position de la liste."""
-        if self.head is None:
-            self.inserer_premier(x)
-        else:
-            item = self._trouver_dernier(self.head)
-            item.suivant = Element(x)
-            self.cardinal += 1
-            assert self._invariant()
+        pass
 
     def retirer_premier(self):
         """Retire le premier élément de la liste. Retourne la valeur de l'élément retiré."""
-        if self.head is None:
-            return
-        return_value = self.head.cle
-        self.head = self.head.suivant
-        self.cardinal -= 1
-        assert self._invariant()
-        return return_value
+        pass
 
     def retirer_dernier(self):
         """Retire le dernier élément de la liste. Retourne la valeur de l'élément retiré."""
-        if self.head is None:
-            return
-        if self.head.suivant is None:
-            return self.retirer_premier()
-        item = self._trouver_avant_dernier(self.head)
-        return_value = item.suivant.cle
-        item.suivant = None
-        self.cardinal -= 1
-        assert self._invariant()
-        return return_value
+        pass
 
     def _avancer(self, n, item):
         """Avance récursivement de n positions à partir de l'élément item."""
-        if n == 0:
-            return item
-        return self._avancer(n - 1, item.suivant)
+        pass
 
     def retirer_position(self, n):
         """Retire l'élément en position n. Retourne sa valeur. NB : Le premier élément a la position 0.
         NB : 0 <= n < cardinal sont les valeurs permises pour n."""
-        assert 0 <= n < self.cardinal
-        if n == self.cardinal - 1:
-            return self.retirer_dernier()
-        item = self._avancer(n, self.head)
-        retval = item.cle
-        item.cle = item.suivant.cle
-        item.suivant = item.suivant.suivant
-        self.cardinal -= 1
-        assert self._invariant()
-        return retval
+        pass
 
     def inserer_position(self, n, x):
         """Insère un élément en position n, où 0 est le début de la liste. 0 <= n <= cardinal, de sorte qu'on peut 
         insérer en position 0 dans une liste vide, par exemple, où insérer en position 3 dans une liste comportant 
         3 éléments.
         """
-        assert 0 <= n <= self.cardinal
-        if n == self.cardinal:
-            self.inserer_dernier(x)
-            return
-        item = self._avancer(n, self.head)
-        ajout = Element(item.cle)
-        item.cle = x
-        ajout.suivant = item.suivant
-        item.suivant = ajout
-        self.cardinal += 1
-        assert self._invariant()
+        pass
 
     def inverse(self):
         """Retourne une liste inversée. Donc [1, 2, 3, 4] retournera [4, 3, 2, 1] !"""
-        if self.head is None:
-            return None
-        inv = ListeSC()
-        item = self.head
-        while item is not None:
-            inv.inserer_dernier(item.cle)
+        pass
 
     def __str__(self):
         """Retourne une représentation textuelle de la liste."""
-        return_value = "["
-        item = self.head
-        while item is not None:
-            return_value += item.cle.__str__()
-            if item.suivant is not None:
-                return_value += ", "
-            item = item.suivant
-        return_value += "]"
-        return return_value
+        pass
 
 
 if __name__ == "__main__":
